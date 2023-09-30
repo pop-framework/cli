@@ -1,0 +1,16 @@
+#!/usr/bin/env php
+<?php
+/**
+ * POP-Framework
+ * Command Line Interface
+ * 
+ * @version 1.0
+ */
+
+$project_dir = getcwd();
+$autoload = $project_dir."/vendor/autoload.php";
+// $autoload = $project_dir."/../core/vendor/autoload.php";
+
+require_once $autoload;
+
+(new Pop\Launcher($project_dir, $argv))->start();
