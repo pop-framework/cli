@@ -13,7 +13,9 @@ $autoload = $project_dir."/vendor/autoload.php";
 
 if (!file_exists($autoload))
 {
+    echo "\n";
     echo "You are not in a POP Project.";
+    echo "\n\n";
     exit;
 }
 
