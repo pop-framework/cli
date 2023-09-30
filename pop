@@ -11,6 +11,11 @@ $project_dir = getcwd();
 $autoload = $project_dir."/vendor/autoload.php";
 // $autoload = $project_dir."/../core/vendor/autoload.php";
 
-require_once $autoload;
+if (!file_exists($autoload))
+{
+    echo "You are not in a POP Project.";
+    exit;
+}
 
+require_once $autoload;
 (new Pop\Launcher($project_dir, $argv))->start();
