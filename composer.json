@@ -1,9 +1,0 @@
-{
-    "name": "pop-framework/cli",
-    "description": "CLI tool for POP-Framework",
-    "license": "MIT",
-    "stability": "stable",
-    "require": {
-        "php": ">=8.0"
-    }
-}
