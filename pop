@@ -7,6 +7,28 @@
  * @version 1.0
  */
 
+
+
+if (isset($argv[1]) && isset($argv[2]) && $argv[1] === 'new')
+{
+    $projectName = $argv[2];
+
+    if (createProject($projectName)) {
+        if (hasGit()){
+            exec("git init");
+        }
+
+        echo "> now, go to the project directory: cd {$projectName}\n";
+        echo "> add your configuration: cp config/database.dist.php config/database.php\n";
+        echo "> create database: pop db:create\n";
+        echo "> Start the server: pop serve\n";
+    }
+
+    exit;
+}
+
+
+
 $project_dir = getcwd();
 $autoload = $project_dir."/vendor/autoload.php";
 // $autoload = $project_dir."/../core/vendor/autoload.php";
@@ -21,3 +43,17 @@ if (!file_exists($autoload))
 
 require_once $autoload;
 (new Pop\Launcher($project_dir, $argv))->start();
+
+function createProject(string $name): bool
+{
+    exec("composer create-project pop-framework/starter $name", $output, $code);
+
+    return $code === 0;
+}
+
+function hasGit(): bool
+{
+    exec('git --version', $output, $code);
+
+    return $code === 0;
+}
