@@ -19,7 +19,10 @@ if (isset($argv[1]) && isset($argv[2]) && $argv[1] === 'new')
         }
 
         exec("cd {$projectName} && npm install");
+        exec("cd {$projectName} && git add *'");
+        exec("cd {$projectName} && git commit -m 'initial commit'");
 
+        echo "\n";
         echo "> now, go to the project directory: cd {$projectName}\n";
         echo "> add your configuration: cp config/database.dist.php config/database.php\n";
         echo "> create database: pop db:create\n";
